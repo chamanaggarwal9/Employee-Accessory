@@ -18,10 +18,6 @@ public interface EmployeeService {
 
     void deleteById(int userId);
 
-//    List<Integer> findByUserId(int userId);
-
-//    List<String> findByAccessoryId(int userId);
-
     void updateEmployee(Employee employee);
 
     List<Mapping> findAll();
@@ -30,5 +26,10 @@ public interface EmployeeService {
 
     void deleteAccessory(int accessoryId);
 
+    void replaceAccessory(int userId1, int userId2, int accessoryId);
+
+    List<Integer> findByUserId(int userId);
+
+    List<String> findByAccessoryId(int userId);
 
 }

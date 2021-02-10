@@ -69,16 +69,25 @@ public class MainController {
     {
         employeeService.deleteAccessory(accessoryId);
     }
-//
-//    @GetMapping(value = "/id/{userId}")
-//    public List<Integer> findByUserId(int userId) {
-//        return employeeService.findByUserId(userId);
-//
-//    }
 
-//    @GetMapping(value = "/getAccessoryName/{userId}")
-//    public List<String> findByAccessoryId(@PathVariable("userId") int userId) {
-//        return employeeService.findByAccessoryId(userId);
-//    }
+    @PutMapping(value = "/replaceAccessory/{userId1}/{userId2}/{accessoryId}")
+    public void replace(@PathVariable("userId1") int userId1, @PathVariable("userId2") int userId2, @PathVariable("accessoryId") int accessoryId)
+    {
+        employeeService.replaceAccessory(userId1, userId2, accessoryId);
+    }
+
+
+    @GetMapping(value = "/id/{userId}")
+    public List<Integer> findByUserId(@PathVariable("userId") int userId) {
+        return employeeService.findByUserId(userId);
+
+    }
+
+    @GetMapping(value = "/getAccessoryName/{userId}")
+    public List<String> findByAccessoryId(@PathVariable("userId") int userId) {
+        return employeeService.findByAccessoryId(userId);
+    }
+
+
 
 }

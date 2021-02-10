@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -107,26 +108,43 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
-//    @Override
-//    public List<Integer> findByUserId(int userId) {
-//        Iterable<Mapping> mappingIterable = mappingRepository.findAll();
-//        List<Integer> array = new ArrayList<>();
-//        for (Mapping m: mappingIterable) {
-//            if(m.getUserId()==userId)
-//            {
-//                array.add(m.getAccessoryId());
-//            }
-//        }
-//        return array;
-//    }
+    @Override
+    public void replaceAccessory(int userId1, int userId2, int accessoryId) {
 
-//    @Override
-//    public List<String> findByAccessoryId(int userId) {
-//        int[] ids=findByUserId(userId);
-//        ArrayList<String> strings = new ArrayList<>();
-//        for (int id:ids) {
-//            strings.add(findByAId(id).getAccessoryName());
-//        }
-//        return strings;
-//    }
+        Iterable<Mapping> mappingList = mappingRepository.findAll();
+        for(Mapping m: mappingList)
+        {
+            if(m.getUserId()==userId1)
+            {
+                m.setUserId(userId2);
+                mappingRepository.save(m);
+                break;
+            }
+        }
+
+    }
+
+    @Override
+    public List<Integer> findByUserId(int userId) {
+        Iterable<Mapping> mappingIterable = mappingRepository.findAll();
+        List<Integer> array = new ArrayList<>();
+        for (Mapping m: mappingIterable) {
+            if(m.getUserId()==userId)
+            {
+                array.add(m.getAccessoryId());
+            }
+        }
+        return array;
+    }
+
+    @Override
+    public List<String> findByAccessoryId(int userId) {
+        List<Integer> ids = new ArrayList<>();
+        ids=findByUserId(userId);
+        ArrayList<String> strings = new ArrayList<>();
+        for (int id:ids) {
+            strings.add(findByAId(id).getAccessoryName());
+        }
+        return strings;
+    }
 }
