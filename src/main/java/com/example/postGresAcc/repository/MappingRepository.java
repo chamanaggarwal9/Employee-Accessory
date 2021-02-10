@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MappingRepository extends CrudRepository<Mapping, Integer> {
-//    Iterable<Mapping> findByUserId(int userId);
 
 }

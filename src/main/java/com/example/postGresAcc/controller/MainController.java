@@ -76,18 +76,9 @@ public class MainController {
         employeeService.replaceAccessory(userId1, userId2, accessoryId);
     }
 
-
-    @GetMapping(value = "/id/{userId}")
-    public List<Integer> findByUserId(@PathVariable("userId") int userId) {
-        return employeeService.findByUserId(userId);
-
-    }
-
     @GetMapping(value = "/getAccessoryName/{userId}")
     public List<String> findByAccessoryId(@PathVariable("userId") int userId) {
         return employeeService.findByAccessoryId(userId);
     }
-
-
 
 }
