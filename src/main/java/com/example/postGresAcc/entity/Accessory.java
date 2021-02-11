@@ -13,6 +13,7 @@ public class Accessory {
     private String accessoryName;
     private String category;
     private int model;
+    private int userId;
 
     public int getAccessoryId() {
         return accessoryId;
@@ -46,6 +47,14 @@ public class Accessory {
         this.model = model;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Accessory{" +
@@ -53,6 +62,7 @@ public class Accessory {
                 ", accessoryName='" + accessoryName + '\'' +
                 ", category='" + category + '\'' +
                 ", model=" + model +
+                ", userId=" + userId +
                 '}';
     }
 }

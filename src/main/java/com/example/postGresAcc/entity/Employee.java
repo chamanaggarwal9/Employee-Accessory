@@ -3,6 +3,7 @@ package com.example.postGresAcc.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "employee")
@@ -15,6 +16,7 @@ public class Employee {
     private int phoneNo;
     private String team;
     private String designation;
+    private ArrayList<String> accessories = new ArrayList<String>();
 
     public int getUserId() {
         return userId;
@@ -64,6 +66,14 @@ public class Employee {
         this.designation = designation;
     }
 
+    public ArrayList<String> getAccessories() {
+        return accessories;
+    }
+
+    public void setAccessories(ArrayList<String> accessories) {
+        this.accessories = accessories;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -73,6 +83,7 @@ public class Employee {
                 ", phoneNo=" + phoneNo +
                 ", team='" + team + '\'' +
                 ", designation='" + designation + '\'' +
+                ", accessories=" + accessories +
                 '}';
     }
 }
