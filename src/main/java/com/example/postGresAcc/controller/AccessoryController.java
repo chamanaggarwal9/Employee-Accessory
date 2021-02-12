@@ -53,6 +53,34 @@ public class AccessoryController {
 
     }
 
+    @PutMapping(value = "assignAccessory/{userId}/{accessoryId}")
+    public void assignAccessory(@PathVariable("userId") int userId, @PathVariable("accessoryId") int accessoryId)
+    {
+        if(accessoryService.existsByAccessoryId(accessoryId) && employeeService.existsById(userId))
+        {
+            accessoryService.assignAccessory(userId, accessoryId);
+        }
+        else
+        {
+            new ResponseEntity<>(
+                    (Accessory) null, HttpStatus.OK);
+        }
+    }
+
+    @PutMapping(value = "takeAccessory/{userId}/{accessoryId}")
+    public void takeAccessory(@PathVariable("userId") int userId, @PathVariable("accessoryId") int accessoryId)
+    {
+        if(accessoryService.existsByAccessoryId(accessoryId) && employeeService.existsById(userId))
+        {
+            accessoryService.takeAccessory(userId, accessoryId);
+        }
+        else
+        {
+            new ResponseEntity<>(
+                    (Accessory) null, HttpStatus.OK);
+        }
+    }
+
     @PutMapping(value = "/replaceAccessory/{userId1}/{userId2}/{accessoryId}")
     public void replace(@PathVariable("userId1") int userId1, @PathVariable("userId2") int userId2, @PathVariable("accessoryId") int accessoryId)
     {

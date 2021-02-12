@@ -12,6 +12,10 @@ public interface AccessoryService {
 
     void deleteAccessory(int accessoryId);
 
+    void assignAccessory(int userId, int accessoryId);
+
+    void takeAccessory(int userId, int accessoryId);
+
     void replaceAccessory(int userId1, int userId2, int accessoryId);
 
 }

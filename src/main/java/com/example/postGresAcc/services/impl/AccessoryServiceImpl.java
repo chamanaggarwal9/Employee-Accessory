@@ -53,6 +53,35 @@ public class AccessoryServiceImpl implements AccessoryService {
     }
 
     @Override
+    public void assignAccessory(int userId, int accessoryId) {
+
+        Accessory accessory = accessoryRepository.findById(accessoryId).get();
+        accessory.setUserId(userId);
+        accessoryRepository.save(accessory);
+
+        Employee employee = employeeRepository.findById(userId).get();
+        if(!employee.getAccessories().contains(accessoryId))
+        {
+            employee.getAccessories().add(accessoryId);
+            employeeRepository.save(employee);
+        }
+
+    }
+
+    @Override
+    public void takeAccessory(int userId, int accessoryId) {
+
+        Employee employee = employeeRepository.findById(userId).get();
+        employee.getAccessories().removeIf(name -> name.equals(accessoryId));
+        employeeRepository.save(employee);
+
+        Accessory accessory = accessoryRepository.findById(accessoryId).get();
+        accessory.setUserId(0);
+        accessoryRepository.save(accessory);
+
+    }
+
+    @Override
     public void replaceAccessory(int userId1, int userId2, int accessoryId) {
 
         Accessory accessory = accessoryRepository.findById(accessoryId).get();
