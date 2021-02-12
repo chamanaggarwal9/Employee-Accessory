@@ -1,10 +1,11 @@
 package com.example.postGresAcc.services;
 
+import com.example.postGresAcc.dto.EmployeeDto;
 import com.example.postGresAcc.entity.Employee;
 
 public interface EmployeeService {
 
-    void save(Employee employee);
+    void save(EmployeeDto emloyeeDto);
 
     Employee findById(int employee);
 
@@ -12,6 +13,6 @@ public interface EmployeeService {
 
     void deleteById(int userId);
 
-    void updateEmployee(Employee employee);
+    void updateEmployee(EmployeeDto employeeDto);
 
 }

@@ -1,5 +1,6 @@
 package com.example.postGresAcc.controller;
 
+import com.example.postGresAcc.dto.EmployeeDto;
 import com.example.postGresAcc.entity.Employee;
 import com.example.postGresAcc.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,8 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping(value = "/employeeSave")
-    public void savee(@RequestBody Employee employee)
-    {
-        employeeService.save(employee);
+    public void savee(@RequestBody EmployeeDto employeeDto) {
+        employeeService.save(employeeDto);
     }
 
     @GetMapping(value = "{userId}")
@@ -35,9 +35,9 @@ public class EmployeeController {
     }
 
     @PutMapping(value = "/update")
-    public void updateUser(@RequestBody Employee employee)
+    public void updateUser(@RequestBody EmployeeDto employeeDto)
     {
-        employeeService.updateEmployee(employee);
+        employeeService.updateEmployee(employeeDto);
     }
 
     @DeleteMapping(value = "{userId}")

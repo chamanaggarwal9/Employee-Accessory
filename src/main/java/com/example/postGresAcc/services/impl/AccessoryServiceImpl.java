@@ -1,5 +1,6 @@
 package com.example.postGresAcc.services.impl;
 
+import com.example.postGresAcc.dto.AccessoryDto;
 import com.example.postGresAcc.entity.Accessory;
 import com.example.postGresAcc.entity.Employee;
 import com.example.postGresAcc.repository.AccessoryRepository;
@@ -18,8 +19,16 @@ public class AccessoryServiceImpl implements AccessoryService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public void save(Accessory accessory)
+    public void save(AccessoryDto accessoryDto)
     {
+        Accessory accessory = null;
+
+        accessory.setAccessoryId(accessoryDto.getAccessoryId());
+        accessory.setAccessoryName(accessoryDto.getAccessoryName());
+        accessory.setCategory(accessoryDto.getCategory());
+        accessory.setModel(accessoryDto.getModel());
+        accessory.setUserId(accessoryDto.getUserId());
+
         accessoryRepository.save(accessory);
     }
 

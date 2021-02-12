@@ -1,5 +1,6 @@
 package com.example.postGresAcc.controller;
 
+import com.example.postGresAcc.dto.AccessoryDto;
 import com.example.postGresAcc.entity.Accessory;
 import com.example.postGresAcc.services.AccessoryService;
 import com.example.postGresAcc.services.EmployeeService;
@@ -19,9 +20,9 @@ public class AccessoryController {
     private EmployeeService employeeService;
 
     @PostMapping(value = "/accessorySave")
-    public void savee(@RequestBody Accessory accessory)
+    public void savee(@RequestBody AccessoryDto accessoryDto)
     {
-        accessoryService.save(accessory);
+        accessoryService.save(accessoryDto);
     }
 
     @GetMapping(value = "/{accessoryId}")

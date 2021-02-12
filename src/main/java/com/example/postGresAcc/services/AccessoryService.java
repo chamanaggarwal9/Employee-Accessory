@@ -1,10 +1,11 @@
 package com.example.postGresAcc.services;
 
+import com.example.postGresAcc.dto.AccessoryDto;
 import com.example.postGresAcc.entity.Accessory;
 
 public interface AccessoryService {
 
-    void save(Accessory accessory);
+    void save(AccessoryDto accessoryDto);
 
     Accessory findByAccessoryId(int accessoryId);
 

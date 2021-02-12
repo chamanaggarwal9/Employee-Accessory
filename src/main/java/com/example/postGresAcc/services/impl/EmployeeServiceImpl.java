@@ -1,5 +1,6 @@
 package com.example.postGresAcc.services.impl;
 
+import com.example.postGresAcc.dto.EmployeeDto;
 import com.example.postGresAcc.entity.Accessory;
 import com.example.postGresAcc.entity.Employee;
 import com.example.postGresAcc.repository.AccessoryRepository;
@@ -18,7 +19,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     private AccessoryRepository accessoryRepository;
 
     @Override
-    public void save(Employee employee) {
+    public void save(EmployeeDto employeeDto) {
+
+        Employee employee = null;
+
+        employee.setUserId(employeeDto.getUserId());
+        employee.setName(employeeDto.getName());
+        employee.setAccessories(employeeDto.getAccessories());
+        employee.setDesignation(employeeDto.getDesignation());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setTeam(employeeDto.getTeam());
+        employee.setPhoneNo(employeeDto.getPhoneNo());
+
+
         employeeRepository.save(employee);
 
         for (int id : employee.getAccessories()) {
@@ -57,7 +70,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public void updateEmployee(EmployeeDto employeeDto) {
+
+        Employee employee = null;
+
+        employee.setUserId(employeeDto.getUserId());
+        employee.setName(employeeDto.getName());
+        employee.setAccessories(employeeDto.getAccessories());
+        employee.setDesignation(employeeDto.getDesignation());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setTeam(employeeDto.getTeam());
+        employee.setPhoneNo(employeeDto.getPhoneNo());
+
         employeeRepository.save(employee);
 
     }
