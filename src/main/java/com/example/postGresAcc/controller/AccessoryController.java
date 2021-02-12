@@ -2,6 +2,7 @@ package com.example.postGresAcc.controller;
 
 import com.example.postGresAcc.entity.Accessory;
 import com.example.postGresAcc.services.AccessoryService;
+import com.example.postGresAcc.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class AccessoryController {
 
     @Autowired
-    AccessoryService accessoryService;
+    private AccessoryService accessoryService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @PostMapping(value = "/accessorySave")
     public void savee(@RequestBody Accessory accessory)
@@ -23,15 +27,15 @@ public class AccessoryController {
     @GetMapping(value = "/{accessoryId}")
     public ResponseEntity<Accessory> findbyAccessoryId(@PathVariable("accessoryId") int accessoryId)
     {
-        if (accessoryService.existsByAccessoryId(accessoryId))
-        {
+        try {
             return ResponseEntity.status(HttpStatus.OK).body(accessoryService.findByAccessoryId(accessoryId));
         }
-        else
+        catch (Exception e)
         {
             return new ResponseEntity<>(
                     (Accessory) null, HttpStatus.OK);
         }
+
     }
 
     @DeleteMapping(value = "delete/{accessoryId}")
@@ -52,7 +56,16 @@ public class AccessoryController {
     @PutMapping(value = "/replaceAccessory/{userId1}/{userId2}/{accessoryId}")
     public void replace(@PathVariable("userId1") int userId1, @PathVariable("userId2") int userId2, @PathVariable("accessoryId") int accessoryId)
     {
-        accessoryService.replaceAccessory(userId1, userId2, accessoryId);
+        if(accessoryService.existsByAccessoryId(accessoryId) && employeeService.existsById(userId1) && employeeService.existsById(userId2))
+        {
+            accessoryService.replaceAccessory(userId1, userId2, accessoryId);
+        }
+        else
+        {
+            new ResponseEntity<>(
+                    (Accessory) null, HttpStatus.OK);
+        }
+
     }
 
 }

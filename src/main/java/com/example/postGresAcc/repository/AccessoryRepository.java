@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccessoryRepository extends CrudRepository<Accessory, Integer> {
 
-    Accessory findByAccessoryName(String Name);
+    //Accessory findByAccessoryName(String Name);
 
 }

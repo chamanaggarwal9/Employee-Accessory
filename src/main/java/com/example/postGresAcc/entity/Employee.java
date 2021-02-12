@@ -16,7 +16,7 @@ public class Employee {
     private int phoneNo;
     private String team;
     private String designation;
-    private ArrayList<String> accessories = new ArrayList<String>();
+    private ArrayList<Integer> accessories = new ArrayList<Integer>();
 
     public int getUserId() {
         return userId;
@@ -66,11 +66,11 @@ public class Employee {
         this.designation = designation;
     }
 
-    public ArrayList<String> getAccessories() {
+    public ArrayList<Integer> getAccessories() {
         return accessories;
     }
 
-    public void setAccessories(ArrayList<String> accessories) {
+    public void setAccessories(ArrayList<Integer> accessories) {
         this.accessories = accessories;
     }
 

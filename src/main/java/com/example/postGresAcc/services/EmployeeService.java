@@ -2,8 +2,6 @@ package com.example.postGresAcc.services;
 
 import com.example.postGresAcc.entity.Employee;
 
-import java.util.List;
-
 public interface EmployeeService {
 
     void save(Employee employee);

@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class AccessoryServiceImpl implements AccessoryService {
 
     @Autowired
-    AccessoryRepository accessoryRepository;
+    private AccessoryRepository accessoryRepository;
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @Override
     public void save(Accessory accessory)
@@ -37,16 +37,18 @@ public class AccessoryServiceImpl implements AccessoryService {
     public void deleteAccessory(int accessoryId) {
 
         Accessory accessory = accessoryRepository.findById(accessoryId).get();
-        String accessoryName = accessory.getAccessoryName();
         int userId = accessory.getUserId();
 
         accessoryRepository.deleteById(accessoryId);
 
-        Employee employee = employeeRepository.findById(userId).get();
+        if(employeeRepository.existsById(userId))
+        {
+            Employee employee = employeeRepository.findById(userId).get();
 
-        employee.getAccessories().removeIf(name -> name.equals(accessoryName));
+            employee.getAccessories().removeIf(name -> name.equals(accessoryId));
 
-        employeeRepository.save(employee);
+            employeeRepository.save(employee);
+        }
 
     }
 
@@ -54,7 +56,6 @@ public class AccessoryServiceImpl implements AccessoryService {
     public void replaceAccessory(int userId1, int userId2, int accessoryId) {
 
         Accessory accessory = accessoryRepository.findById(accessoryId).get();
-        String accessoryName = accessory.getAccessoryName();
 
         accessory.setUserId(userId2);
         accessoryRepository.save(accessory);
@@ -62,10 +63,10 @@ public class AccessoryServiceImpl implements AccessoryService {
         Employee employee1 = employeeRepository.findById(userId1).get();
         Employee employee2 = employeeRepository.findById(userId2).get();
 
-        employee1.getAccessories().removeIf(name -> name.equals(accessoryName));
+        employee1.getAccessories().removeIf(name -> name.equals(accessoryId));
         employeeRepository.save(employee1);
 
-        employee2.getAccessories().add(accessoryName);
+        employee2.getAccessories().add(accessoryId);
         employeeRepository.save(employee2);
 
     }

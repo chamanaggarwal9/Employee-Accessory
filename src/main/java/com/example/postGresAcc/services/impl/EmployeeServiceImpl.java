@@ -8,26 +8,27 @@ import com.example.postGresAcc.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    AccessoryRepository accessoryRepository;
+    private AccessoryRepository accessoryRepository;
 
     @Override
     public void save(Employee employee) {
         employeeRepository.save(employee);
 
-        for (String Name : employee.getAccessories()) {
-            Accessory accessory = accessoryRepository.findByAccessoryName(Name);
-            accessory.setUserId(employee.getUserId());
-            accessoryRepository.save(accessory);
+        for (int id : employee.getAccessories()) {
+
+            if(accessoryRepository.existsById(id))
+            {
+                Accessory accessory = accessoryRepository.findById(id).get();
+                accessory.setUserId(employee.getUserId());
+                accessoryRepository.save(accessory);
+            }
         }
     }
 
@@ -53,7 +54,6 @@ public class EmployeeServiceImpl implements EmployeeService {
                 accessoryRepository.save(a);
             }
         }
-
     }
 
     @Override

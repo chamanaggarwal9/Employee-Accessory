@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
 
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @PostMapping(value = "/employeeSave")
     public void savee(@RequestBody Employee employee)
@@ -23,11 +23,11 @@ public class EmployeeController {
     @GetMapping(value = "{userId}")
     public ResponseEntity<Employee> findbyId(@PathVariable("userId") int userId)
     {
-        if (employeeService.existsById(userId))
-        {
+        try {
+
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.findById(userId));
         }
-        else
+        catch (Exception e)
         {
             return new ResponseEntity<>(
                     (Employee) null, HttpStatus.OK);
