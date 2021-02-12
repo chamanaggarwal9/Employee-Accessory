@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "{userId}")
-    public ResponseEntity<Employee> findbyId(@PathVariable("userId") int userId)
+    public ResponseEntity<EmployeeDto> findbyId(@PathVariable("userId") int userId)
     {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.findById(userId));
@@ -29,7 +29,7 @@ public class EmployeeController {
         catch (Exception e)
         {
             return new ResponseEntity<>(
-                    (Employee) null, HttpStatus.OK);
+                    (EmployeeDto) null, HttpStatus.OK);
         }
     }
 
@@ -49,7 +49,7 @@ public class EmployeeController {
         else
         {
             new ResponseEntity<>(
-                    (Employee) null, HttpStatus.OK);
+                    (EmployeeDto) null, HttpStatus.OK);
         }
     }
 

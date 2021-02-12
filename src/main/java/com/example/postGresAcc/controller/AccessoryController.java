@@ -26,15 +26,17 @@ public class AccessoryController {
     }
 
     @GetMapping(value = "/{accessoryId}")
-    public ResponseEntity<Accessory> findbyAccessoryId(@PathVariable("accessoryId") int accessoryId)
+    public ResponseEntity<AccessoryDto> findbyAccessoryId(@PathVariable("accessoryId") int accessoryId)
     {
         try {
+
             return ResponseEntity.status(HttpStatus.OK).body(accessoryService.findByAccessoryId(accessoryId));
+
         }
         catch (Exception e)
         {
             return new ResponseEntity<>(
-                    (Accessory) null, HttpStatus.OK);
+                    (AccessoryDto) null, HttpStatus.OK);
         }
 
     }
@@ -49,7 +51,7 @@ public class AccessoryController {
         else
         {
             new ResponseEntity<>(
-                    (Accessory) null, HttpStatus.OK);
+                    (AccessoryDto) null, HttpStatus.OK);
         }
 
     }
@@ -64,7 +66,7 @@ public class AccessoryController {
         else
         {
             new ResponseEntity<>(
-                    (Accessory) null, HttpStatus.OK);
+                    (AccessoryDto) null, HttpStatus.OK);
         }
     }
 
@@ -78,7 +80,7 @@ public class AccessoryController {
         else
         {
             new ResponseEntity<>(
-                    (Accessory) null, HttpStatus.OK);
+                    (AccessoryDto) null, HttpStatus.OK);
         }
     }
 
@@ -92,7 +94,7 @@ public class AccessoryController {
         else
         {
             new ResponseEntity<>(
-                    (Accessory) null, HttpStatus.OK);
+                    (AccessoryDto) null, HttpStatus.OK);
         }
 
     }

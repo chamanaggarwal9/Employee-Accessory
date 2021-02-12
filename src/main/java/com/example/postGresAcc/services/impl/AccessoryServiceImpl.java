@@ -33,8 +33,19 @@ public class AccessoryServiceImpl implements AccessoryService {
     }
 
     @Override
-    public Accessory findByAccessoryId(int accessoryId) {
-        return accessoryRepository.findById(accessoryId).get();
+    public AccessoryDto findByAccessoryId(int accessoryId) {
+
+        Accessory accessory = accessoryRepository.findById(accessoryId).get();;
+
+        AccessoryDto accessoryDto = new AccessoryDto();
+
+        accessoryDto.setAccessoryId(accessory.getAccessoryId());
+        accessoryDto.setAccessoryName(accessory.getAccessoryName());
+        accessoryDto.setCategory(accessory.getCategory());
+        accessoryDto.setModel(accessory.getModel());
+        accessoryDto.setUserId(accessory.getUserId());
+
+        return accessoryDto;
     }
 
     @Override

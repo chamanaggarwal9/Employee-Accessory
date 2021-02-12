@@ -7,7 +7,7 @@ public interface EmployeeService {
 
     void save(EmployeeDto emloyeeDto);
 
-    Employee findById(int employee);
+    EmployeeDto findById(int employee);
 
     boolean existsById(int userId);
 

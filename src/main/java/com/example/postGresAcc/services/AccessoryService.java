@@ -7,7 +7,7 @@ public interface AccessoryService {
 
     void save(AccessoryDto accessoryDto);
 
-    Accessory findByAccessoryId(int accessoryId);
+    AccessoryDto findByAccessoryId(int accessoryId);
 
     boolean existsByAccessoryId(int accessoryId);
 

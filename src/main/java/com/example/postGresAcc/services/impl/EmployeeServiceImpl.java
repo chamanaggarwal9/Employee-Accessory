@@ -1,5 +1,6 @@
 package com.example.postGresAcc.services.impl;
 
+import com.example.postGresAcc.dto.AccessoryDto;
 import com.example.postGresAcc.dto.EmployeeDto;
 import com.example.postGresAcc.entity.Accessory;
 import com.example.postGresAcc.entity.Employee;
@@ -46,8 +47,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findById(int userId) {
-        return employeeRepository.findById(userId).get();
+    public EmployeeDto findById(int userId) {
+
+        Employee employee =  employeeRepository.findById(userId).get();
+
+        EmployeeDto employeeDto = new EmployeeDto();
+
+        employeeDto.setUserId(employee.getUserId());
+        employeeDto.setName(employee.getName());
+        employeeDto.setAccessories(employee.getAccessories());
+        employeeDto.setDesignation(employee.getDesignation());
+        employeeDto.setEmail(employee.getEmail());
+        employeeDto.setTeam(employee.getTeam());
+        employeeDto.setPhoneNo(employee.getPhoneNo());
+
+        return employeeDto;
+
     }
 
     @Override
