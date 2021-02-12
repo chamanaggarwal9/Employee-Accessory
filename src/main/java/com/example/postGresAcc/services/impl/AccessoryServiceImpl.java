@@ -21,7 +21,7 @@ public class AccessoryServiceImpl implements AccessoryService {
     @Override
     public void save(AccessoryDto accessoryDto)
     {
-        Accessory accessory = null;
+        Accessory accessory = new Accessory();
 
         accessory.setAccessoryId(accessoryDto.getAccessoryId());
         accessory.setAccessoryName(accessoryDto.getAccessoryName());

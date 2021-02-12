@@ -24,7 +24,6 @@ public class EmployeeController {
     public ResponseEntity<Employee> findbyId(@PathVariable("userId") int userId)
     {
         try {
-
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.findById(userId));
         }
         catch (Exception e)

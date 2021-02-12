@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void save(EmployeeDto employeeDto) {
 
-        Employee employee = null;
+        Employee employee = new Employee();
 
         employee.setUserId(employeeDto.getUserId());
         employee.setName(employeeDto.getName());
@@ -72,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(EmployeeDto employeeDto) {
 
-        Employee employee = null;
+        Employee employee = new Employee();
 
         employee.setUserId(employeeDto.getUserId());
         employee.setName(employeeDto.getName());

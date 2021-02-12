@@ -1,12 +1,20 @@
 package com.example.postGresAcc.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity
 public class AccessoryDto {
 
+    @Id
     private int accessoryId;
     private String accessoryName;
     private String category;
     private int model;
-    private int userId;
+
+    @Transient
+    private int userId = 0;
 
     public int getAccessoryId() {
         return accessoryId;

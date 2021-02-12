@@ -2,7 +2,7 @@ package com.example.postGresAcc.dto;
 
 import java.util.ArrayList;
 
-public class EmployeeDto {
+public class  EmployeeDto {
 
     private int userId;
     private String name;
