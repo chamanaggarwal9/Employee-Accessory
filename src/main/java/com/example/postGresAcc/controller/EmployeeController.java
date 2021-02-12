@@ -46,11 +46,6 @@ public class EmployeeController {
         {
             employeeService.deleteById(userId);
         }
-        else
-        {
-            new ResponseEntity<>(
-                    (EmployeeDto) null, HttpStatus.OK);
-        }
     }
 
 }

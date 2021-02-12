@@ -31,7 +31,6 @@ public class AccessoryController {
         try {
 
             return ResponseEntity.status(HttpStatus.OK).body(accessoryService.findByAccessoryId(accessoryId));
-
         }
         catch (Exception e)
         {
@@ -48,12 +47,6 @@ public class AccessoryController {
         {
             accessoryService.deleteAccessory(accessoryId);
         }
-        else
-        {
-            new ResponseEntity<>(
-                    (AccessoryDto) null, HttpStatus.OK);
-        }
-
     }
 
     @PutMapping(value = "assignAccessory/{userId}/{accessoryId}")
@@ -62,11 +55,6 @@ public class AccessoryController {
         if(accessoryService.existsByAccessoryId(accessoryId) && employeeService.existsById(userId))
         {
             accessoryService.assignAccessory(userId, accessoryId);
-        }
-        else
-        {
-            new ResponseEntity<>(
-                    (AccessoryDto) null, HttpStatus.OK);
         }
     }
 
@@ -77,11 +65,6 @@ public class AccessoryController {
         {
             accessoryService.takeAccessory(userId, accessoryId);
         }
-        else
-        {
-            new ResponseEntity<>(
-                    (AccessoryDto) null, HttpStatus.OK);
-        }
     }
 
     @PutMapping(value = "/replaceAccessory/{userId1}/{userId2}/{accessoryId}")
@@ -91,12 +74,6 @@ public class AccessoryController {
         {
             accessoryService.replaceAccessory(userId1, userId2, accessoryId);
         }
-        else
-        {
-            new ResponseEntity<>(
-                    (AccessoryDto) null, HttpStatus.OK);
-        }
-
     }
 
 }
